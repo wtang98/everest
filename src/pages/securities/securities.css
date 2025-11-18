@@ -93,6 +93,14 @@
 .securities__container--tech__info .infoRow__info {
   color: #4C4A47;
 }
+.securities__container--fees .title {
+  font-size: 28px;
+  color: #0E2841;
+  margin: 20px 0;
+}
+.securities__container--fees .grid {
+  margin-bottom: 20px;
+}
 
 .download {
   width: 150px;

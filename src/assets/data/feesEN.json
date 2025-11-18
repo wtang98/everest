@@ -1,0 +1,227 @@
+[
+    {
+        "service": "Electronic Trading Fee - via Internet Trading System / iPhone / Android App",
+        "charges": "0.1%, minimum HKD 40",
+        "remarks": "Negotiable"
+    },
+    {
+        "service": "Phone Trading Fee",
+        "charges": "0.25% or minimum HKD 100",
+        "remarks": "Negotiable"
+    },
+    {
+        "service": "Trading Fee (HKEx)",
+        "charges": "0.006% or minimum HKD 1",
+        "remarks": "Calculated based on transaction amount"
+    },
+    {
+        "service": "Trading Tariff (SFC)",
+        "charges": "0.0027% or minimum HKD 1",
+        "remarks": "Calculated based on transaction amount"
+    },
+    {
+        "service": "CCASS Settlement Fee",
+        "charges": "0.005%, minimum HKD 2",
+        "remarks": "Calculated based on transaction amount"
+    },
+    {
+        "service": "Stamp Duty",
+        "charges": "HKD 1 for consideration below HKD 1,000 / 0.13% for HKD 1,000+, rounding rule applies",
+        "remarks": "Effective August 1, 2021"
+    },
+    {
+        "service": "FRC Transaction Levy",
+        "charges": "0.00015%",
+        "remarks": "Calculated based on transaction amount (effective January 1, 2022)"
+    },
+    {
+        "service": "Interest on Settlement Account (Cash Account)",
+        "charges": "OCBC Preferential Rate + 6%",
+        "remarks": "Daily calculation"
+    },
+    {
+        "service": "Stock Withdrawal Instruction (SI)",
+        "charges": "HKD 20 per board lot (minimum HKD 400), less than 1 lot charged as 1 lot; Scrip Fee Concession HKD 3,000 per instruction",
+        "remarks": ""
+    },
+    {
+        "service": "Stock Deposit Instruction (SI)",
+        "charges": "Free (HKD 2,000 scrip fee waived under Scrip Fee Concession) / otherwise HKD 500 per stock",
+        "remarks": ""
+    },
+    {
+        "service": "Investor SI / ISI",
+        "charges": "Same as above",
+        "remarks": ""
+    },
+    {
+        "service": "Physical Share Withdrawal",
+        "charges": "HKD 20 per board lot (minimum HKD 400), less than 1 lot charged as 1 lot",
+        "remarks": ""
+    },
+    {
+        "service": "Physical Share Deposit",
+        "charges": "1–20 certificates: HKD 10 each; 21+ certificates: HKD 10 + HKD 20 stamp per certificate; Jumbo cert HKD 400; Special jumbo cert HKD 800",
+        "remarks": ""
+    },
+    {
+        "service": "Custody Fee",
+        "charges": "Free",
+        "remarks": ""
+    },
+    {
+        "service": "Odd Lot Trading",
+        "charges": "HKD 3 per board lot",
+        "remarks": "Less than 1 lot treated as 1 lot"
+    },
+    {
+        "service": "Stock Deposit Receipt Handling",
+        "charges": "HKD 100 per receipt",
+        "remarks": "Regardless of success or failure"
+    },
+    {
+        "service": "IPO Application (FIPO)",
+        "charges": "HKD 200 per application",
+        "remarks": "Regardless of success or failure"
+    },
+    {
+        "service": "Dividend Collection / Scrip Handling",
+        "charges": "0.8%, minimum HKD 40",
+        "remarks": "0.12%, maximum HKD 10,000"
+    },
+    {
+        "service": "Rights / Bonus / Redemption Processing",
+        "charges": "Minimum HKD 1,500 or 0.8% of value (whichever is higher)",
+        "remarks": "Additional charges may apply"
+    },
+    {
+        "service": "Telegraphic Transfer",
+        "charges": "HKD 200 + bank charges",
+        "remarks": ""
+    },
+    {
+        "service": "Corporate Action / General Meeting Proxy",
+        "charges": "HKD 1.00 per share (minimum HKD 50)",
+        "remarks": ""
+    },
+    {
+        "service": "Purchase of Company Financial Report",
+        "charges": "At cost + handling fee",
+        "remarks": ""
+    },
+    {
+        "service": "Express Account Transfer",
+        "charges": "HKD 200 per instruction + courier charges",
+        "remarks": ""
+    },
+    {
+        "service": "Nominee Confirmation",
+        "charges": "HKD 10 per share / Overseas HKD 100 per confirmation",
+        "remarks": ""
+    },
+    {
+        "service": "Private Stock Transfer / Receipt",
+        "charges": "0.3%, minimum HKD 100",
+        "remarks": ""
+    },
+    {
+        "service": "Stock Transfer Slip",
+        "charges": "HKD 20 each",
+        "remarks": ""
+    },
+    {
+        "service": "Monthly Statement (previous month)",
+        "charges": "Free",
+        "remarks": ""
+    },
+    {
+        "service": "Monthly Statement (older than 2 months)",
+        "charges": "HKD 100 per month (electronic/PDF only)",
+        "remarks": ""
+    },
+    {
+        "service": "Paper Statement Reprint",
+        "charges": "HKD 50 per month",
+        "remarks": ""
+    },
+    {
+        "service": "Audit Confirmation",
+        "charges": "HKD 100 per request",
+        "remarks": ""
+    },
+    {
+        "service": "Returned Cheque",
+        "charges": "HKD 200",
+        "remarks": ""
+    },
+    {
+        "service": "Stop Cheque",
+        "charges": "HKD 150",
+        "remarks": ""
+    },
+    {
+        "service": "Online Trading Commission",
+        "charges": "0.25% of transaction value (minimum USD 25)",
+        "remarks": ""
+    },
+    {
+        "service": "Phone Trading Commission",
+        "charges": "0.5% of transaction value (minimum USD 25)",
+        "remarks": ""
+    },
+    {
+        "service": "SEC Fee (sell only)",
+        "charges": "0.0008% of transaction value (min USD 0.01)",
+        "remarks": ""
+    },
+    {
+        "service": "FINRA Trading Activity Fee (sell only)",
+        "charges": "USD 0.0002 per share (max USD 10 per trade)",
+        "remarks": ""
+    },
+    {
+        "service": "Stock Settlement Fee (SI)",
+        "charges": "0.25% of stock value (min HKD 500 or equivalent USD)",
+        "remarks": ""
+    },
+    {
+        "service": "Stock Withdrawal Fee (SI)",
+        "charges": "USD 30 per stock",
+        "remarks": ""
+    },
+    {
+        "service": "ADR Custody Fee",
+        "charges": "USD 0.03–0.08 per share",
+        "remarks": ""
+    },
+    {
+        "service": "ADR Processing Fee",
+        "charges": "USD 30 per stock",
+        "remarks": ""
+    },
+    {
+        "service": "Stock Rights Fee",
+        "charges": "USD 10 per stock",
+        "remarks": ""
+    },
+    {
+        "service": "Dividend Collection Fee",
+        "charges": "USD 15 per cheque",
+        "remarks": ""
+    },
+    {
+        "service": "Cash Dividend Fee",
+        "charges": "USD 15 per cheque",
+        "remarks": ""
+    },
+    {
+        "service": "Withholding Tax",
+        "charges": "30% standard rate (subject to U.S. tax law changes)",
+        "remarks": ""
+    },
+    {
+        "service": "Custody Fee",
+        "charges": "0.2% annually, calculated monthly on final day based on market value (if applicable)",
+        "remarks": ""
+    }
+]

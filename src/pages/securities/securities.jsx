@@ -1,4 +1,6 @@
 import React from "react";
+import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
+import { AgGridReact } from "ag-grid-react";
 import PublicSharpIcon from "@mui/icons-material/PublicSharp";
 import BuildIcon from "@mui/icons-material/Build";
 import AppShortcutSharpIcon from "@mui/icons-material/AppShortcutSharp";
@@ -7,8 +9,13 @@ import apple from "../../assets/apple.svg.png";
 import android from "../../assets/android.jpg";
 import pwa from "../../assets/pwa.png";
 import google from "../../assets/play.png";
+import feesEN from "../../assets/data/feesEN.json";
+import feesTC from "../../assets/data/feesTC.json";
+import feesSC from "../../assets/data/feesSC.json";
 
 import "./securities.scss";
+
+ModuleRegistry.registerModules([AllCommunityModule]);
 
 const DownloadLinks = ({ text, icon, link }) => (
     <div className="download">
@@ -20,7 +27,11 @@ const DownloadLinks = ({ text, icon, link }) => (
         </a>
     </div>
 );
-
+const data = {
+    Eng: feesEN,
+    简体: feesSC,
+    繁體: feesTC,
+};
 const Securities = ({ currentLanguage }) => {
     return (
         <div className="securities">
@@ -174,11 +185,35 @@ const Securities = ({ currentLanguage }) => {
                     <div className="title">
                         {
                             {
-                                Eng: "Fees ",
-                                简体: "收费",
-                                繁體: "與我們交易",
+                                Eng: "Fees",
+                                简体: "費用",
+                                繁體: "費用",
                             }[currentLanguage]
                         }
+                    </div>
+                    <div className="grid" style={{ height: 500 }}>
+                        <AgGridReact
+                            defaultColDef={{
+                                resizable: false,
+                                suppressMovable: true,
+                                sortable: false,
+                            }}
+                            tooltipShowMode={"whenTruncated"}
+                            tooltipShowDelay={100}
+                            rowData={data[currentLanguage]}
+                            columnDefs={[
+                                {
+                                    field: "service",
+                                    tooltipField: "service",
+                                    flex: 1,
+                                },
+                                {
+                                    field: "charges",
+                                    tooltipField: "charges",
+                                    flex: 1,
+                                },
+                            ]}
+                        />
                     </div>
                 </div>
             </div>

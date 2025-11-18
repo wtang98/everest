@@ -112,6 +112,18 @@
                 }
             }
         }
+
+        &--fees {
+            .title {
+                font-size: 28px;
+                color: #0E2841;
+                margin: 20px 0;
+            }
+
+            .grid {
+                margin-bottom: 20px;
+            }
+        }
     }
 
 }

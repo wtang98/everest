@@ -1,0 +1,227 @@
+[
+    {
+        "service": "电子交易费 - 网上交易系统 / iPhone / Android 应用程序",
+        "charges": "0.1%，最低港币 40 元",
+        "remarks": "可商议"
+    },
+    {
+        "service": "电话交易费",
+        "charges": "0.25% 或最低港币 100 元",
+        "remarks": "可商议"
+    },
+    {
+        "service": "交易费（港交所）",
+        "charges": "0.006% 或最低港币 1 元",
+        "remarks": "按交易金额计算"
+    },
+    {
+        "service": "证监会交易征费（SFC）",
+        "charges": "0.0027% 或最低港币 1 元",
+        "remarks": "按交易金额计算"
+    },
+    {
+        "service": "中央结算费",
+        "charges": "0.005%，最低港币 2 元",
+        "remarks": "按交易金额计算"
+    },
+    {
+        "service": "印花税",
+        "charges": "成交金额少于港币 1,000 元：港币 1 元 <br> 成交金额 1,000 元或以上：0.13%（四舍五入，低于 1 元作 1 元计）",
+        "remarks": "自 2021 年 8 月 1 日起生效"
+    },
+    {
+        "service": "财汇局征费（FRC）",
+        "charges": "0.00015%",
+        "remarks": "按交易金额计算（自 2022 年 1 月 1 日起生效）"
+    },
+    {
+        "service": "结算账户利息（现金账户）",
+        "charges": "OCBC 优惠利率 + 6%",
+        "remarks": "按日计算"
+    },
+    {
+        "service": "交收指示提取（SI）",
+        "charges": "每手港币 20 元（最低港币 400 元，不足 1 手按 1 手算），申请免补单需缴港币 3,000 元",
+        "remarks": ""
+    },
+    {
+        "service": "交收指示存入（SI）",
+        "charges": "免费（如符合 Scrip Fee Concession 免收 2,000 元补单费）/ 否则每只股票收港币 500 元",
+        "remarks": ""
+    },
+    {
+        "service": "投资者 SI / ISI",
+        "charges": "同上",
+        "remarks": ""
+    },
+    {
+        "service": "实物提取",
+        "charges": "每手港币 20 元（最低港币 400 元，不足 1 手按 1 手算）",
+        "remarks": ""
+    },
+    {
+        "service": "实物存入",
+        "charges": "1–20 张：每张收港币 10 元 <br> 21 张或以上：每张收港币 10 元 + 手续印花港币 20 元 <br> Jumbo Cert：港币 400 元 <br> 特大 Jumbo Cert：港币 800 元",
+        "remarks": ""
+    },
+    {
+        "service": "存仓费",
+        "charges": "免费",
+        "remarks": ""
+    },
+    {
+        "service": "碎股买卖",
+        "charges": "每手港币 3 元",
+        "remarks": "不足 1 手按 1 手计算"
+    },
+    {
+        "service": "股票证书手续费",
+        "charges": "每单申请港币 100 元",
+        "remarks": "不论成功与否"
+    },
+    {
+        "service": "融资认购服务（FIPO）",
+        "charges": "每单申请港币 200 元",
+        "remarks": "不论成功与否"
+    },
+    {
+        "service": "代收现金股息 / 股息代息",
+        "charges": "股息 0.8%，最低港币 40 元",
+        "remarks": "0.12%，最高港币 10,000 元"
+    },
+    {
+        "service": "追收股息 / 红股 / 赎回",
+        "charges": "每项最低收港币 1,500 元，或股息 / 股票价值之 0.8%（取较高者）",
+        "remarks": "另加费用（如有）"
+    },
+    {
+        "service": "电汇",
+        "charges": "每笔港币 200 元 + 银行费用",
+        "remarks": ""
+    },
+    {
+        "service": "代理人服务及企业行动",
+        "charges": "每手港币 1 元，另加最低港币 50 元手续费",
+        "remarks": ""
+    },
+    {
+        "service": "以买卖单购买证券",
+        "charges": "按股票市值 0.25%（最低港币 100 元）",
+        "remarks": "代供股权 / 股票证书等不设 1 手计算"
+    },
+    {
+        "service": "特快过户费",
+        "charges": "每项指示港币 200 元，另加过户处收费",
+        "remarks": ""
+    },
+    {
+        "service": "代寄证明",
+        "charges": "每手港币 10 元，海外每单港币 100 元",
+        "remarks": ""
+    },
+    {
+        "service": "私有化 / 收购",
+        "charges": "收取股票价值 0.3%，最低港币 100 元",
+        "remarks": ""
+    },
+    {
+        "service": "额外股票单",
+        "charges": "每次港币 20 元",
+        "remarks": ""
+    },
+    {
+        "service": "补回最近六个月月结单",
+        "charges": "免费",
+        "remarks": ""
+    },
+    {
+        "service": "补回超过六个月月结单",
+        "charges": "电子 / 邮件格式：每份港币 100 元",
+        "remarks": ""
+    },
+    {
+        "service": "邮递月结单行政费",
+        "charges": "每月港币 50 元",
+        "remarks": ""
+    },
+    {
+        "service": "申请实体账单副本",
+        "charges": "每份港币 100 元",
+        "remarks": ""
+    },
+    {
+        "service": "退票",
+        "charges": "每张港币 200 元",
+        "remarks": ""
+    },
+    {
+        "service": "止付支票",
+        "charges": "每张港币 150 元",
+        "remarks": ""
+    },
+    {
+        "service": "网上交易佣金",
+        "charges": "成交金额 0.25%（最低 USD 25）",
+        "remarks": ""
+    },
+    {
+        "service": "电话交易佣金",
+        "charges": "成交金额 0.5%（最低 USD 25）",
+        "remarks": ""
+    },
+    {
+        "service": "SEC 费用（仅限卖盘）",
+        "charges": "成交金额 0.0008%（最低 USD 0.01）",
+        "remarks": ""
+    },
+    {
+        "service": "FINRA 交易费（仅限卖盘）",
+        "charges": "每股 USD 0.0002（每笔最高 USD 10）",
+        "remarks": ""
+    },
+    {
+        "service": "股票结算费（SI）",
+        "charges": "股票市值 0.25%（最低港币 500 元或等值美元）",
+        "remarks": ""
+    },
+    {
+        "service": "股票提取费（SI）",
+        "charges": "每只股票 USD 30",
+        "remarks": ""
+    },
+    {
+        "service": "ADR 保管费",
+        "charges": "每股 USD 0.03–0.08",
+        "remarks": ""
+    },
+    {
+        "service": "ADR 处理费",
+        "charges": "每只股票 USD 30",
+        "remarks": ""
+    },
+    {
+        "service": "红股服务费",
+        "charges": "每只股票 USD 10",
+        "remarks": ""
+    },
+    {
+        "service": "股息服务费",
+        "charges": "每张支票 USD 15",
+        "remarks": ""
+    },
+    {
+        "service": "现金股息收费",
+        "charges": "每张支票 USD 15",
+        "remarks": ""
+    },
+    {
+        "service": "预扣税",
+        "charges": "标准预扣税 30%（受美国税务规定变动影响）",
+        "remarks": ""
+    },
+    {
+        "service": "保管费",
+        "charges": "每月按最后一天市值按 0.2% 年率计算（如适用）",
+        "remarks": ""
+    }
+]
