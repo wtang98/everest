@@ -44,9 +44,6 @@ export const Header = ({ currentLanguage, setCurrentLanguage }) => {
     return (
         <header className="header">
             <div className="header__left">
-                <Link to="/">
-                    <img src={logo} className="header-logo" alt="logo" />
-                </Link>
                 <div className="header__left--menu">
                     <IconButton
                         size="large"
@@ -92,6 +89,15 @@ export const Header = ({ currentLanguage, setCurrentLanguage }) => {
                     </Menu>
                 </div>
                 <div className="header__left--links">
+                    <Link to="/">
+                        {
+                            {
+                                Eng: "Home",
+                                简体: "证券",
+                                繁體: "證券",
+                            }[currentLanguage]
+                        }
+                    </Link>
                     <Link to="/securities">
                         {
                             {

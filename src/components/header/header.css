@@ -60,10 +60,12 @@
   text-decoration: none;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
   .header__left--menu {
-    margin-left: 40px;
     display: flex;
+  }
+  .header__left--menu > button {
+    padding: 0;
   }
   .header__left--links {
     display: none;

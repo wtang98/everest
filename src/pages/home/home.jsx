@@ -2,55 +2,41 @@ import React from "react";
 import Contact from "../contact/contact";
 import { Link } from "react-router";
 import "./home.scss";
+import everestLogo from "../../assets/everest_white.png";
+import gigaLogo from "../../assets/giga logo.png";
 
 const Home = ({ currentLanguage }) => {
     return (
         <div className="home">
             <div className="home--landing">
-                <div className="title">Everest Hong Kong</div>
-                <p>
-                    {
-                        {
-                            Eng: "An alternative asset manager focusing on equities worldwide",
-                            简体: "一家专注于全球股票的另类资产管理公司",
-                            繁體: "一家專注於全球股票的另類資產管理公司",
-                        }[currentLanguage]
-                    }
-                </p>
-            </div>
-            <div className="home--offerings">
-                <div className="home--offerings__container">
-                    <div className="img" />
-                    <div className="home--offerings__container--description">
-                        <p className="title">
-                            {
-                                { Eng: "Services", 简体: "服务", 繁體: "服務" }[
-                                    currentLanguage
-                                ]
-                            }
-                        </p>
-                        <p className="content">
-                            {
-                                {
-                                    Eng: "We provide asset, investment and family office management services tailored to meet the unique needs of our clients.",
-                                    简体: "我们提供量身定制的资产、投资和家族办公室管理服务，以满足客户的独特需求。",
-                                    繁體: "我們提供量身訂制的資產、投資和家族辦公室管理服務，以滿足客戶的獨特需求。",
-                                }[currentLanguage]
-                            }
-                        </p>
-                        <p className="link">
-                            <Link to={"/services"}>
-                                {
-                                    {
-                                        Eng: "Learn More",
-                                        简体: "了解更多",
-                                        繁體: "了解更多",
-                                    }[currentLanguage]
-                                }
+                <div className="home--landing__container">
+                    <div className="logo">
+                        <div className="text">Securities provided by:</div>
+                        <div className="text">
+                            Everest (Hong Kong) Securities Limited
+                        </div>
+                        <div className="img-container">
+                            <Link to={"/securities"}>
+                                <img
+                                    src={everestLogo}
+                                    className="eLogo"
+                                    alt=""
+                                />
                             </Link>
-                        </p>
+                        </div>
+                    </div>
+                    <div className="logo">
+                        <div className="text">Services provided by:</div>
+                        <div className="text">Giga (Hong Kong) Limited</div>
+                        <div className="img-container">
+                            <Link to={"/services"}>
+                                <img src={gigaLogo} className="gLogo" alt="" />
+                            </Link>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div className="home--offerings">
                 <div className="home--offerings__container">
                     <div className="img2" />
                     <div className="home--offerings__container--description">
@@ -74,6 +60,38 @@ const Home = ({ currentLanguage }) => {
                         </p>
                         <p className="link">
                             <Link to={"/securities"}>
+                                {
+                                    {
+                                        Eng: "Learn More",
+                                        简体: "了解更多",
+                                        繁體: "了解更多",
+                                    }[currentLanguage]
+                                }
+                            </Link>
+                        </p>
+                    </div>
+                </div>
+                <div className="home--offerings__container">
+                    <div className="img" />
+                    <div className="home--offerings__container--description">
+                        <p className="title">
+                            {
+                                { Eng: "Services", 简体: "服务", 繁體: "服務" }[
+                                    currentLanguage
+                                ]
+                            }
+                        </p>
+                        <p className="content">
+                            {
+                                {
+                                    Eng: "We provide asset, investment and family office management services tailored to meet the unique needs of our clients.",
+                                    简体: "我们提供量身定制的资产、投资和家族办公室管理服务，以满足客户的独特需求。",
+                                    繁體: "我們提供量身訂制的資產、投資和家族辦公室管理服務，以滿足客戶的獨特需求。",
+                                }[currentLanguage]
+                            }
+                        </p>
+                        <p className="link">
+                            <Link to={"/services"}>
                                 {
                                     {
                                         Eng: "Learn More",

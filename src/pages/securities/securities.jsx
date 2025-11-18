@@ -170,6 +170,17 @@ const Securities = ({ currentLanguage }) => {
                         </div>
                     </div>
                 </div>
+                <div className="securities__container--fees">
+                    <div className="title">
+                        {
+                            {
+                                Eng: "Fees ",
+                                简体: "收费",
+                                繁體: "與我們交易",
+                            }[currentLanguage]
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     );

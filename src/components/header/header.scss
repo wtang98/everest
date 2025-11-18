@@ -21,8 +21,6 @@
 
             a:hover {
                 color: rgb(198, 198, 193);
-                ;
-                ;
             }
         }
 
@@ -76,17 +74,23 @@
 
 
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
     .header {
-
         &__left {
             &--menu {
-                margin-left: 40px;
                 display: flex;
+
+                >button {
+                    padding: 0;
+                }
             }
 
             &--links {
                 display: none;
+                // a {
+                //     margin-left: 20px;
+                // }
+
             }
         }
 
