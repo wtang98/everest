@@ -93,8 +93,8 @@ export const Header = ({ currentLanguage, setCurrentLanguage }) => {
                         {
                             {
                                 Eng: "Home",
-                                简体: "证券",
-                                繁體: "證券",
+                                简体: "主页",
+                                繁體: "主頁",
                             }[currentLanguage]
                         }
                     </Link>
