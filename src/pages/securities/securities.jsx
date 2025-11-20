@@ -19,9 +19,9 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 
 const DownloadLinks = ({ text, icon, link }) => (
     <div className="download">
-        <a target="_blank" href={link}>
+        <a href={link}>
             <button>
-                <img className={icon} src={icon} />
+                <img className={icon} alt="" src={icon} />
                 <div className="dowload__text">{text}</div>
             </button>
         </a>
@@ -32,6 +32,7 @@ const data = {
     简体: feesSC,
     繁體: feesTC,
 };
+
 const Securities = ({ currentLanguage }) => {
     return (
         <div className="securities">

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import logo from "../../assets/everest_white.png";
 import { Link } from "react-router";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
