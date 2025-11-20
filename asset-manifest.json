@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/everest/static/css/main.ed929c14.css",
-    "main.js": "/everest/static/js/main.44b43b63.js",
-    "static/js/453.628a8c70.chunk.js": "/everest/static/js/453.628a8c70.chunk.js",
-    "static/media/lowAngleBuildingShot.jpg": "/everest/static/media/lowAngleBuildingShot.cf0b5cf310060ba5e4ef.jpg",
-    "static/media/fo.jpg": "/everest/static/media/fo.0249c32ed4138fa90727.jpg",
-    "static/media/charts.jpg": "/everest/static/media/charts.8786820e9c95ada4224f.jpg",
-    "static/media/wallcharts.jpg": "/everest/static/media/wallcharts.576765d69285eb952de9.jpg",
-    "static/media/hk.jpg": "/everest/static/media/hk.09e345634196bc51b4a7.jpg",
-    "static/media/everest_white.png": "/everest/static/media/everest_white.4e666f5c54d8baafe5f8.png",
-    "static/media/united.jpg": "/everest/static/media/united.a3bce7c232f92eaa6233.jpg",
-    "static/media/oldtown.jpg": "/everest/static/media/oldtown.48ba89fcc0c0dd8601ed.jpg",
-    "static/media/chart.jpg": "/everest/static/media/chart.c6d74cc909cc0117ee88.jpg",
-    "static/media/apple.svg.png": "/everest/static/media/apple.svg.ebddd05f0b18311e8f1c.png",
-    "static/media/securites.jpg": "/everest/static/media/securites.1dbec0750d3bb86acb69.jpg",
-    "static/media/android.jpg": "/everest/static/media/android.c76c464fef7d60feff65.jpg",
-    "index.html": "/everest/index.html",
-    "main.ed929c14.css.map": "/everest/static/css/main.ed929c14.css.map",
-    "main.44b43b63.js.map": "/everest/static/js/main.44b43b63.js.map",
-    "453.628a8c70.chunk.js.map": "/everest/static/js/453.628a8c70.chunk.js.map"
+    "main.css": "/static/css/main.740f4509.css",
+    "main.js": "/static/js/main.31806ded.js",
+    "static/js/453.628a8c70.chunk.js": "/static/js/453.628a8c70.chunk.js",
+    "static/media/lowAngleBuildingShot.jpg": "/static/media/lowAngleBuildingShot.cf0b5cf310060ba5e4ef.jpg",
+    "static/media/fo.jpg": "/static/media/fo.0249c32ed4138fa90727.jpg",
+    "static/media/charts.jpg": "/static/media/charts.8786820e9c95ada4224f.jpg",
+    "static/media/wallcharts.jpg": "/static/media/wallcharts.576765d69285eb952de9.jpg",
+    "static/media/hk.jpg": "/static/media/hk.09e345634196bc51b4a7.jpg",
+    "static/media/everest_white.png": "/static/media/everest_white.4e666f5c54d8baafe5f8.png",
+    "static/media/united.jpg": "/static/media/united.a3bce7c232f92eaa6233.jpg",
+    "static/media/oldtown.jpg": "/static/media/oldtown.48ba89fcc0c0dd8601ed.jpg",
+    "static/media/chart.jpg": "/static/media/chart.c6d74cc909cc0117ee88.jpg",
+    "static/media/apple.svg.png": "/static/media/apple.svg.ebddd05f0b18311e8f1c.png",
+    "static/media/securites.jpg": "/static/media/securites.1dbec0750d3bb86acb69.jpg",
+    "static/media/android.jpg": "/static/media/android.c76c464fef7d60feff65.jpg",
+    "index.html": "/index.html",
+    "main.740f4509.css.map": "/static/css/main.740f4509.css.map",
+    "main.31806ded.js.map": "/static/js/main.31806ded.js.map",
+    "453.628a8c70.chunk.js.map": "/static/js/453.628a8c70.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ed929c14.css",
-    "static/js/main.44b43b63.js"
+    "static/css/main.740f4509.css",
+    "static/js/main.31806ded.js"
   ]
 }
