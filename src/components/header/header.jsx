@@ -33,7 +33,7 @@ export const Header = ({ currentLanguage, setCurrentLanguage }) => {
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(
-            anchorElNav === null ? event.currentTarget : !anchorElNav
+            anchorElNav === null ? event.currentTarget : !anchorElNav,
         );
     };
     const handleCloseNavMenu = () => {
@@ -126,8 +126,24 @@ export const Header = ({ currentLanguage, setCurrentLanguage }) => {
                     </Link>
                 </div>
             </div>
-            <div onClick={handleLanguage} className="header__language">
-                {currentLanguage}
+            <div className="header__right">
+                <div className="header__right--login">
+                    <Link to="/login">
+                        {
+                            {
+                                Eng: "Investor Login",
+                                简体: "投资者登录",
+                                繁體: "投資者登錄",
+                            }[currentLanguage]
+                        }
+                    </Link>
+                </div>
+                <div
+                    onClick={handleLanguage}
+                    className="header__right--language"
+                >
+                    {currentLanguage}
+                </div>
             </div>
         </header>
     );

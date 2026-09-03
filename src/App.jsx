@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 import { Header } from "./components/header/header";
 import { BrowserRouter, Routes, Route } from "react-router";
 import About from "./pages/about/about.jsx";
@@ -6,16 +8,16 @@ import Services from "./pages/services/services.jsx";
 import Home from "./pages/home/home.jsx";
 import Contact from "./pages/contact/contact.jsx";
 import Securities from "./pages/securities/securities.jsx";
+import Login from "./pages/login/login.jsx";
 
 import "./App.scss";
 import Footer from "./components/footer/footer.jsx";
-
+// Initialize Firebase
 const App = () => {
     const [currentLanguage, setCurrentLanguage] = useState(() => {
         const savedLanguage = localStorage.getItem("user_profile");
         return savedLanguage ? JSON.parse(savedLanguage) : "Eng";
     });
-
     useEffect(() => {
         localStorage.setItem("user_profile", JSON.stringify(currentLanguage));
     }, [currentLanguage]);
@@ -58,6 +60,12 @@ const App = () => {
                         <Route
                             path="/everest"
                             element={<Home currentLanguage={currentLanguage} />}
+                        />
+                        <Route
+                            path="/login"
+                            element={
+                                <Login currentLanguage={currentLanguage} />
+                            }
                         />
                         <Route
                             path="/"
