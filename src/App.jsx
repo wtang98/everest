@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Header } from "./components/header/header";
 import { BrowserRouter, Routes, Route } from "react-router";
 import About from "./pages/about/about.jsx";
@@ -11,7 +11,15 @@ import "./App.scss";
 import Footer from "./components/footer/footer.jsx";
 
 const App = () => {
-    const [currentLanguage, setCurrentLanguage] = useState("Eng");
+    const [currentLanguage, setCurrentLanguage] = useState(() => {
+        const savedLanguage = localStorage.getItem("user_profile");
+        return savedLanguage ? JSON.parse(savedLanguage) : "Eng";
+    });
+
+    useEffect(() => {
+        localStorage.setItem("user_profile", JSON.stringify(currentLanguage));
+    }, [currentLanguage]);
+
     return (
         <div className="App">
             <BrowserRouter>
