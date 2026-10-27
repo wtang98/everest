@@ -1,6 +1,6 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router";
 import "./login.scss";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
@@ -10,75 +10,86 @@ const Login = () => {
     const { updateUser } = useMyContext();
     const navigate = useNavigate();
 
-    const [email, setEmail] = useState("weitongbluebusiness@gmail.com");
-    const [password, setPassword] = useState("Firefox_55");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    useEffect(() => {
-        const lastEmail = localStorage.getItem("email");
-        if (lastEmail) {
-            setEmail(lastEmail);
+    const handleLogin = async (event) => {
+        event.preventDefault();
+        setErrorMessage("");
+        setIsSubmitting(true);
+
+        try {
+            const userCredential = await signInWithEmailAndPassword(
+                auth,
+                email,
+                password,
+            );
+            const userCred = userCredential.user;
+            updateUser(userCred);
+            localStorage.setItem("email", email);
+            localStorage.setItem("user", JSON.stringify(userCred));
+            navigate("/portfolio");
+        } catch {
+            setErrorMessage(
+                "Unable to sign in. Check your email and password and try again.",
+            );
+        } finally {
+            setIsSubmitting(false);
         }
-    }, []);
-
-    const handlelogin = () => {
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                const userCred = userCredential.user;
-                updateUser(userCred);
-                navigate("/Portfolio");
-                localStorage.setItem("email", email);
-                localStorage.setItem("user", JSON.stringify(userCred));
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-            });
     };
 
     return (
         <div className="login">
-            <div className="login-container">
-                <h2>Welcome Back</h2>
+            <form className="login-container" onSubmit={handleLogin}>
+                <p className="login-eyebrow">Investor portal</p>
+                <h1>Welcome back</h1>
+                <p className="login-intro">
+                    Sign in to access your investor account.
+                </p>
                 <div className="input-group">
-                    <label htmlFor="email">Email Address</label>
+                    <label htmlFor="email">Email address</label>
                     <input
                         type="email"
                         id="email"
                         name="email"
+                        autoComplete="username"
                         required
                         value={email}
                         placeholder="Enter your email"
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(event) => setEmail(event.target.value)}
                     />
                 </div>
-
                 <div className="input-group">
                     <label htmlFor="password">Password</label>
                     <input
                         type="password"
                         id="password"
                         name="password"
+                        autoComplete="current-password"
                         required
+                        value={password}
                         placeholder="Enter your password"
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(event) => setPassword(event.target.value)}
                     />
                 </div>
-
+                {errorMessage && (
+                    <p className="login-error" role="alert">
+                        {errorMessage}
+                    </p>
+                )}
                 <button
                     type="submit"
                     className="login-btn"
-                    onClick={handlelogin}
+                    disabled={isSubmitting}
                 >
-                    Log In
+                    {isSubmitting ? "Signing in..." : "Sign in"}
                 </button>
-
-                <div className="footer-links">
-                    <a href="/forgot-password">Forgot Password?</a>
-                    <p>
-                        Don't have an account? <a href="/signup">Sign up</a>
-                    </p>
-                </div>
-            </div>
+                <p className="login-note">
+                    Need help accessing your account? Contact our team.
+                </p>
+            </form>
         </div>
     );
 };

@@ -1,6 +1,6 @@
 import React, { use, useEffect, useState } from "react";
 import { AgGridReact } from "ag-grid-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { collection, doc, getDocs, getDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../firebase/firebase.js";
@@ -15,14 +15,14 @@ const Portfolio = () => {
     const [openTab, setOpenTab] = useState("portfolio");
     const [userName, setUserName] = useState("");
 
-    const examplePortfolioData = [
-        {
-            stockCode: "SGREF",
-            stockName: "SGREF",
-            unitPrice: 0.5,
-            quantity: 1000,
-        },
-    ];
+    // const examplePortfolioData = [
+    //     {
+    //         stockCode: "SGREF",
+    //         stockName: "SGREF",
+    //         unitPrice: 0.5,
+    //         quantity: 1000,
+    //     },
+    // ];
 
     useEffect(() => {
         // Listen for authentication state changes
@@ -112,22 +112,25 @@ const Portfolio = () => {
 
     return (
         <div className="portfolio">
-            <div className="landing">{userName && `Welcome ${userName}`}</div>
-            <div className="tabs">
-                <div
-                    className={`tab ${openTab === "portfolio" ? "active" : ""}`}
-                    onClick={() => handleTabClick("portfolio")}
-                >
-                    Portfolio
+            <div className="portfolio__container">
+                <div className="landing">
+                    {userName && `Welcome ${userName}`}
                 </div>
-                <div
-                    className={`tab ${openTab === "transactions" ? "active" : ""}`}
-                    onClick={() => handleTabClick("transactions")}
-                >
-                    Transactions
+                <div className="tabs">
+                    <div
+                        className={`tab ${openTab === "portfolio" ? "active" : ""}`}
+                        onClick={() => handleTabClick("portfolio")}
+                    >
+                        Portfolio
+                    </div>
+                    <div
+                        className={`tab ${openTab === "transactions" ? "active" : ""}`}
+                        onClick={() => handleTabClick("transactions")}
+                    >
+                        Transactions
+                    </div>
                 </div>
-            </div>
-            {/* <div className="performance">
+                {/* <div className="performance">
                 <div className="performance-item">
                     <div className="performance-label">
                         Total Portfolio Value
@@ -143,72 +146,73 @@ const Portfolio = () => {
                     <div className="performance-value"> </div>
                 </div>
             </div> */}
-            <div className="grid">
-                {openTab === "portfolio" ? (
-                    <AgGridReact
-                        defaultColDef={{
-                            resizable: false,
-                            suppressMovable: true,
-                            sortable: false,
-                        }}
-                        tooltipShowMode={"whenTruncated"}
-                        tooltipShowDelay={100}
-                        rowData={portfolioData}
-                        columnDefs={[
-                            { field: "stockCode", width: 106 },
-                            {
-                                field: "stockName",
-                                flex: 1,
-                                cellStyle: () => ({ fontSize: "9px" }),
-                            },
-                            { field: "unitPrice", width: 97 },
-                            { field: "quantity", width: 90 },
-                            {
-                                field: "marketValue",
-                                width: 130,
-                                valueFormatter: currencyValueFormatter,
-                            },
-                        ]}
-                    />
-                ) : (
-                    <AgGridReact
-                        defaultColDef={{
-                            resizable: false,
-                            suppressMovable: true,
-                            sortable: false,
-                        }}
-                        tooltipShowMode={"whenTruncated"}
-                        tooltipShowDelay={100}
-                        rowData={transactionData}
-                        columnDefs={[
-                            {
-                                field: "date",
-                                width: 106,
-                                cellEditor: "agDateCellEditor",
-                                valueFormatter: (params) =>
-                                    params.value
-                                        ? String(params.value).replace(
-                                              /(\d{4})(\d{2})(\d{2})/,
-                                              "$1-$2-$3",
-                                          )
-                                        : "",
-                            },
-                            { field: "stockCode", width: 106 },
-                            {
-                                field: "stockName",
-                                flex: 1,
-                                cellStyle: () => ({ fontSize: "9px" }),
-                            },
-                            { field: "unitPrice", width: 100 },
-                            { field: "quantity", width: 90 },
-                            {
-                                field: "marketValue",
-                                width: 106,
-                                valueFormatter: currencyValueFormatter,
-                            },
-                        ]}
-                    />
-                )}
+                <div className="grid">
+                    {openTab === "portfolio" ? (
+                        <AgGridReact
+                            defaultColDef={{
+                                resizable: false,
+                                suppressMovable: true,
+                                sortable: false,
+                            }}
+                            tooltipShowMode={"whenTruncated"}
+                            tooltipShowDelay={100}
+                            rowData={portfolioData}
+                            columnDefs={[
+                                { field: "stockCode", width: 106 },
+                                {
+                                    field: "stockName",
+                                    flex: 1,
+                                    cellStyle: () => ({ fontSize: "9px" }),
+                                },
+                                { field: "unitPrice", width: 97 },
+                                { field: "quantity", width: 90 },
+                                {
+                                    field: "marketValue",
+                                    width: 130,
+                                    valueFormatter: currencyValueFormatter,
+                                },
+                            ]}
+                        />
+                    ) : (
+                        <AgGridReact
+                            defaultColDef={{
+                                resizable: false,
+                                suppressMovable: true,
+                                sortable: false,
+                            }}
+                            tooltipShowMode={"whenTruncated"}
+                            tooltipShowDelay={100}
+                            rowData={transactionData}
+                            columnDefs={[
+                                {
+                                    field: "date",
+                                    width: 106,
+                                    cellEditor: "agDateCellEditor",
+                                    valueFormatter: (params) =>
+                                        params.value
+                                            ? String(params.value).replace(
+                                                  /(\d{4})(\d{2})(\d{2})/,
+                                                  "$1-$2-$3",
+                                              )
+                                            : "",
+                                },
+                                { field: "stockCode", width: 106 },
+                                {
+                                    field: "stockName",
+                                    flex: 1,
+                                    cellStyle: () => ({ fontSize: "9px" }),
+                                },
+                                { field: "unitPrice", width: 100 },
+                                { field: "quantity", width: 90 },
+                                {
+                                    field: "marketValue",
+                                    width: 106,
+                                    valueFormatter: currencyValueFormatter,
+                                },
+                            ]}
+                        />
+                    )}
+                </div>
             </div>
         </div>
     );

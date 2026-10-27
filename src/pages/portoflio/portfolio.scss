@@ -1,39 +1,42 @@
 .portfolio {
     display: flex;
     flex-direction: column;
+    align-items: center;
 
-    .landing {
-        display: flex;
-        align-items: center;
-        height: 70px;
-        font-size: 24px;
-    }
-
-    .tabs {
-        display: flex;
-
-        .active {
-            border-bottom: 2px solid #000;
+    &__container {
+        .landing {
+            display: flex;
+            align-items: center;
+            height: 70px;
+            font-size: 24px;
         }
 
-        .tab {
-            padding: 10px 20px 10px 5px;
-            cursor: pointer;
+        .tabs {
+            display: flex;
 
-            &:hover {
-                background-color: #f0f0f0;
+            .active {
+                border-bottom: 2px solid #000;
+            }
+
+            .tab {
+                padding: 10px 20px 10px 5px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #f0f0f0;
+                }
             }
         }
-    }
 
-    .performance {
-        height: 200px;
-        width: 700px;
-        border: 1px solid #ccc;
-    }
+        .performance {
+            height: 200px;
+            width: 700px;
+            border: 1px solid #ccc;
+        }
 
-    .grid {
-        height: 200px;
-        width: 700px;
+        .grid {
+            height: 200px;
+            width: 700px;
+        }
     }
 }

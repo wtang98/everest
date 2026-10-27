@@ -1,5 +1,4 @@
 .about {
-    min-height: inherit;
     display: flex;
     justify-content: center;
     color: #4C4A47;
@@ -7,9 +6,9 @@
     &__container {
         width: 100%;
         display: flex;
-        justify-content: center;
         align-items: center;
         flex-direction: column;
+        justify-content: center;
         gap: 70px;
 
         &--landing {
@@ -119,7 +118,7 @@
             flex-direction: column;
             width: calc(80% + 50px);
             color: #0E2841;
-            margin-bottom: 70px;
+            // margin-bottom: 70px;
 
             &__title {
                 padding-bottom: 20px;
