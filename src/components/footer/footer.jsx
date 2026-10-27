@@ -2,10 +2,12 @@ import "./footer.scss";
 
 const Footer = () => {
     return (
-        <div className="footer">
-            Copyright © 2025 Everest (Hong Kong) Securities Limted and Giga
-            (Hong Kong) Limted
-        </div>
+        <footer className="footer">
+            <p>
+                © {new Date().getFullYear()} Everest (Hong Kong) Securities
+                Limited and Giga (Hong Kong) Limited
+            </p>
+        </footer>
     );
 };
 

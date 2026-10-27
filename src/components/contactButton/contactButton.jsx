@@ -1,16 +1,17 @@
 import React from "react";
+import { Link } from "react-router";
 import "./contactButton.scss";
 
 const ContactButton = ({ currentLanguage }) => {
     return (
         <div className="contactButton">
-            <a href="/contact">
+            <Link to="/contact">
                 {
                     { Eng: "Contact Us", 简体: "联系我们", 繁體: "聯絡我們" }[
                         currentLanguage
                     ]
                 }
-            </a>
+            </Link>
         </div>
     );
 };

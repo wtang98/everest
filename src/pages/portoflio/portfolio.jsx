@@ -1,6 +1,6 @@
 import React, { use, useEffect, useState } from "react";
 import { AgGridReact } from "ag-grid-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { collection, doc, getDocs, getDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../firebase/firebase.js";
