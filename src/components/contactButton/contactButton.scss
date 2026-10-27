@@ -1,14 +1,18 @@
 .contactButton {
-    width: 115px;
-    height: 40px;
-    background-color: #0E2841;
-    display: flex;
+    display: inline-flex;
+    min-height: 42px;
     align-items: center;
     justify-content: center;
+    padding: 0 17px;
+    background: var(--color-navy);
 
     a {
+        color: #fff;
+        font-size: 12px;
         text-decoration: none;
-        color: white;
-        font-size: 13px;
+    }
+
+    &:hover {
+        background: #244666;
     }
 }

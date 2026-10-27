@@ -14,8 +14,16 @@ import Portfolio from "./pages/portoflio/portfolio.jsx";
 
 const App = () => {
     const [currentLanguage, setCurrentLanguage] = useState(() => {
-        const savedLanguage = localStorage.getItem("user_profile");
-        return savedLanguage ? JSON.parse(savedLanguage) : "Eng";
+        try {
+            const savedLanguage = JSON.parse(
+                localStorage.getItem("user_profile"),
+            );
+            return ["Eng", "简体", "繁體"].includes(savedLanguage)
+                ? savedLanguage
+                : "Eng";
+        } catch {
+            return "Eng";
+        }
     });
 
     useEffect(() => {

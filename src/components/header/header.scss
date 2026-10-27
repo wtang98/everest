@@ -1,109 +1,201 @@
 .header {
+    position: relative;
+    z-index: 5;
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    padding: 10px 30px;
-    min-height: 46px;
+    width: 100%;
+    min-height: 76px;
+    padding: 0 clamp(20px, 5vw, 72px);
+    background: #102b45;
+    color: #fff;
+    box-shadow: 0 8px 30px rgb(4 21 37 / 12%);
 
-
-    a {
-        text-decoration: none;
-        color: white;
-        margin-left: 40px;
-    }
-
-    a:hover {
-        color: rgb(198, 198, 193);
-    }
-
-
-    .header-logo {
-        height: 50px;
-    }
-
-    .MuiSvgIcon-root {
-        color: white;
-    }
-
-    &__left {
-        display: flex;
-        justify-content: space-between;
+    &__brand {
+        display: inline-flex;
         align-items: center;
-
-        &--menu {
-            display: none;
-        }
-
-    }
-
-    &__right {
-        display: flex;
-        flex-direction: row;
-
-        &--login {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            cursor: pointer;
-            font-size: 18px;
-        }
-
-        &--language {
-            color: white;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            width: 55px;
-        }
-    }
-}
-
-.MuiPaper-root {
-    border-radius: 0;
-    background-color: #0E2841;
-
-    .MuiList-root {
-        background-color: #0E2841;
-        padding: 0;
-        width: 120px;
-
-        .MuiTypography-root {
-            display: flex;
-            align-items: start;
-            justify-content: flex-start;
-        }
-    }
-}
-
-.menu-appbar {
-    background-color: #0E2841;
-    padding: 5px 10px;
-
-    a {
-        color: white;
+        gap: 11px;
+        color: #fff;
         text-decoration: none;
     }
+
+    &__brand-mark {
+        display: grid;
+        width: 39px;
+        height: 39px;
+        place-items: center;
+        border: 1px solid rgb(255 255 255 / 54%);
+        border-radius: 50%;
+        color: #e6c994;
+        font-family: Georgia, serif;
+        font-size: 23px;
+    }
+
+    &__brand-name {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        letter-spacing: 0.17em;
+
+        strong {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        span {
+            color: rgb(255 255 255 / 68%);
+            font-size: 9px;
+        }
+    }
+
+    &__navigation,
+    &__actions {
+        display: flex;
+        align-items: center;
+    }
+
+    &__navigation {
+        gap: clamp(16px, 2.5vw, 36px);
+    }
+
+    &__nav-link {
+        position: relative;
+        padding: 10px 0;
+        color: rgb(255 255 255 / 82%);
+        font-size: 13px;
+        text-decoration: none;
+        transition: color 160ms ease;
+
+        &:hover,
+        &:focus-visible {
+            color: #e6c994;
+        }
+    }
+
+    &__actions {
+        gap: 18px;
+    }
+
+    &__investor-link {
+        padding: 10px 15px;
+        border: 1px solid rgb(230 201 148 / 68%);
+        border-radius: 3px;
+        color: #f1dfbf;
+        font-size: 12px;
+        text-decoration: none;
+        transition:
+            color 160ms ease,
+            background-color 160ms ease;
+
+        &:hover,
+        &:focus-visible {
+            background: #e6c994;
+            color: #102b45;
+        }
+    }
+
+    &__language {
+        padding: 8px 0;
+        border: 0;
+        background: transparent;
+        color: #fff;
+        cursor: pointer;
+        font: inherit;
+        font-size: 12px;
+
+        &:hover,
+        &:focus-visible {
+            color: #e6c994;
+        }
+    }
+
+    &__menu-toggle {
+        display: none;
+    }
 }
 
-
-
-@media (max-width: 500px) {
+@media (max-width: 900px) {
     .header {
-        &__left {
-            &--menu {
-                display: flex;
+        min-height: 68px;
 
-                >button {
-                    padding: 0;
-                }
-            }
+        &__menu-toggle {
+            display: flex;
+            width: 40px;
+            height: 40px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            margin-left: auto;
+            border: 1px solid rgb(255 255 255 / 25%);
+            border-radius: 4px;
+            background: transparent;
+            cursor: pointer;
 
-            &--links {
-                display: none;
+            span {
+                display: block;
+                width: 17px;
+                height: 1px;
+                background: #fff;
             }
         }
 
+        &__navigation {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            left: 0;
+            display: none;
+            align-items: stretch;
+            gap: 0;
+            padding: 8px clamp(20px, 5vw, 72px) 18px;
+            background: #102b45;
+            box-shadow: 0 18px 24px rgb(4 21 37 / 15%);
+
+            &.is-open {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        &__nav-link {
+            padding: 13px 0;
+            border-top: 1px solid rgb(255 255 255 / 10%);
+        }
+
+        &__actions {
+            margin-left: 16px;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 0 16px;
+
+        &__brand-mark {
+            width: 34px;
+            height: 34px;
+        }
+
+        &__brand-name strong {
+            font-size: 11px;
+        }
+
+        &__investor-link {
+            padding: 9px 10px;
+            font-size: 10px;
+        }
+
+        &__actions {
+            gap: 10px;
+            margin-left: 10px;
+        }
+    }
+}
+
+@media (max-width: 360px) {
+    .header__investor-link {
+        display: none;
     }
 }
