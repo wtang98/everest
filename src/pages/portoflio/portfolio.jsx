@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { AgGridReact } from "ag-grid-react";
 import { useNavigate } from "react-router";
 import { collection, doc, getDocs, getDoc } from "firebase/firestore";
@@ -9,7 +9,7 @@ import "./portfolio.scss";
 
 const Portfolio = () => {
     const navigate = useNavigate();
-    const { user } = useMyContext();
+    const { user, updateUser } = useMyContext();
     const [portfolioData, setPortfolioData] = useState(undefined);
     const [transactionData, setTransactionData] = useState(undefined);
     const [openTab, setOpenTab] = useState("portfolio");
@@ -27,12 +27,12 @@ const Portfolio = () => {
     useEffect(() => {
         // Listen for authentication state changes
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            // setUser(currentUser);
+            updateUser("");
         });
 
         // Clean up subscription on unmount
         return () => unsubscribe();
-    }, []);
+    }, [updateUser]);
 
     const fetchPortfolioData = async () => {
         const userRef = doc(db, "users", user.uid);
@@ -96,7 +96,7 @@ const Portfolio = () => {
         } else if (user !== undefined && storedUser !== null) {
             fetchPortfolioData();
             fetchTransactionData();
-        }
+        } // eslint-disable-next-line
     }, [user]);
 
     const currencyValueFormatter = (params) => {
