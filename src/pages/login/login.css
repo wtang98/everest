@@ -4,12 +4,6 @@
   padding: 0;
 }
 
-/* Container */
-.login {
-  /* Form Inputs */
-  /* Button */
-  /* Footer Links */
-}
 .login .login-container {
   background-color: #ffffff;
   padding: 2.5rem;
@@ -22,6 +16,9 @@
   text-align: center;
   color: #1f2937;
   margin-bottom: 2rem;
+}
+.login {
+  /* Form Inputs */
 }
 .login .input-group {
   margin-bottom: 1.5rem;
@@ -46,6 +43,9 @@
   border-color: #3b82f6;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
+.login {
+  /* Button */
+}
 .login .login-btn {
   width: 100%;
   padding: 0.75rem;
@@ -60,6 +60,9 @@
 }
 .login .login-btn:hover {
   background-color: #1d4ed8;
+}
+.login {
+  /* Footer Links */
 }
 .login .footer-links {
   margin-top: 1.5rem;
@@ -76,4 +79,4 @@
 }
 .login .footer-links p {
   margin-top: 0.5rem;
-}
+}/*# sourceMappingURL=login.css.map */

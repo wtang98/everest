@@ -9,7 +9,7 @@
   margin-left: 40px;
 }
 .header a:hover {
-  color: #c6c6c1;
+  color: rgb(198, 198, 193);
 }
 .header .header-logo {
   height: 50px;
@@ -78,4 +78,4 @@
   .header__left--links {
     display: none;
   }
-}
+}/*# sourceMappingURL=header.css.map */

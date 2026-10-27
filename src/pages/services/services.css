@@ -62,7 +62,7 @@
   max-width: 100%;
 }
 .services__container--carousel--buttons .highlighted {
-  border-bottom: 2px solid #c6c6c1;
+  border-bottom: 2px solid rgb(198, 198, 193);
 }
 .services__container--carousel--buttons .selector {
   padding: 0 20px 0 5px;
@@ -143,15 +143,15 @@
   .services__container--carousel--buttons {
     font-size: 12px;
   }
-  .services__container--carousel--content--investment, .services__container--carousel--content--asset, .services__container--carousel--content--family {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
   .services__container--carousel--content--investment__img, .services__container--carousel--content--asset__img, .services__container--carousel--content--family__img {
     margin-left: 20px;
     border-radius: 5px 5px 0 0;
     width: 100%;
+  }
+  .services__container--carousel--content--investment, .services__container--carousel--content--asset, .services__container--carousel--content--family {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
   .services__container--risk {
     margin-bottom: 30px;
@@ -179,19 +179,19 @@
   .services__container--carousel--buttons {
     font-size: 12px;
   }
-  .services__container--carousel--content--investment, .services__container--carousel--content--asset, .services__container--carousel--content--family {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
   .services__container--carousel--content--investment__img, .services__container--carousel--content--asset__img, .services__container--carousel--content--family__img {
     margin-left: 0;
     width: 100%;
     border-radius: 5px 5px 0 0;
+  }
+  .services__container--carousel--content--investment, .services__container--carousel--content--asset, .services__container--carousel--content--family {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 @media (max-width: 634px) {
   .services__container--carousel--content--investment__img, .services__container--carousel--content--asset__img, .services__container--carousel--content--family__img {
     margin-left: 0;
   }
-}
+}/*# sourceMappingURL=services.css.map */

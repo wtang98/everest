@@ -110,17 +110,17 @@
   font-size: larger;
   padding: 10px 20px;
   margin: 0;
-  background-color: #c6c6c1;
+  background-color: rgb(198, 198, 193);
 }
 .home--offerings__container--description .content {
   margin: 0;
-  background-color: #c6c6c1;
+  background-color: rgb(198, 198, 193);
   color: #4C4A47;
   padding: 0 20px 0 20px;
   font-size: 12px;
 }
 .home--offerings__container--description .link {
-  background-color: #c6c6c1;
+  background-color: rgb(198, 198, 193);
   color: #4C4A47;
   margin: 0;
   text-align: right;
@@ -128,9 +128,9 @@
 }
 .home--offerings__container--description a {
   width: 100%;
-  background-color: #c6c6c1;
+  background-color: rgb(198, 198, 193);
   text-decoration: none;
-  color: #0e2841;
+  color: rgb(14, 40, 65);
 }
 .home--offerings__container--description a:hover {
   text-decoration: underline;
@@ -175,7 +175,7 @@
 .home--about__container--description {
   display: flex;
   flex-direction: column;
-  background-color: #c6c6c1;
+  background-color: rgb(198, 198, 193);
   padding: 0 20px 20px 20px;
   z-index: 1;
   transform: translateX(-30px);
@@ -192,14 +192,14 @@
   color: #4C4A47;
 }
 .home--about__container--description .link {
-  background-color: #c6c6c1;
+  background-color: rgb(198, 198, 193);
   color: #4C4A47;
   margin: 0;
   text-align: right;
 }
 .home--about__container--description .link a {
   width: 100%;
-  background-color: #c6c6c1;
+  background-color: rgb(198, 198, 193);
   text-decoration: none;
   color: #0E2841;
 }
@@ -222,4 +222,4 @@
   .home--landing__container .logo {
     width: 95%;
   }
-}
+}/*# sourceMappingURL=home.css.map */
