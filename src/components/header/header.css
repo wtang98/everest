@@ -3,6 +3,20 @@
   justify-content: space-between;
   padding: 10px 30px;
 }
+.header a {
+  text-decoration: none;
+  color: white;
+  margin-left: 40px;
+}
+.header a:hover {
+  color: rgb(198, 198, 193);
+}
+.header .header-logo {
+  height: 50px;
+}
+.header .MuiSvgIcon-root {
+  color: white;
+}
 .header__left {
   display: flex;
   justify-content: space-between;
@@ -11,22 +25,16 @@
 .header__left--menu {
   display: none;
 }
-.header__left--links a {
-  text-decoration: none;
-  color: white;
-  margin-left: 40px;
-}
-.header__left--links a:hover {
-  color: #c6c6c1;
-}
-.header__left .header-logo {
-  height: 50px;
-}
-.header__left .MuiSvgIcon-root {
-  color: white;
-}
-.header__language {
+.header__right {
   display: flex;
+  flex-direction: row;
+}
+.header__right--login {
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+}
+.header__right--language {
   color: white;
   font-size: 18px;
   display: flex;
@@ -70,4 +78,4 @@
   .header__left--links {
     display: none;
   }
-}
+}/*# sourceMappingURL=header.css.map */

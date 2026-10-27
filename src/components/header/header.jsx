@@ -5,8 +5,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import "./header.scss";
+import { useMyContext } from "../../stateLayer/stateProvider.js";
 
 export const Header = ({ currentLanguage, setCurrentLanguage }) => {
+    const { user } = useMyContext();
     const pages = [
         {
             Eng: "About Us",
@@ -20,7 +22,7 @@ export const Header = ({ currentLanguage, setCurrentLanguage }) => {
         },
         { Eng: "Services", 简体: "服务", 繁體: "服務" },
         { Eng: "Contact Us", 简体: "联系我们", 繁體: "聯絡我們" },
-    ];
+    ]; //yc@yc144.com
     const languages = ["Eng", "简体", "繁體"];
     const [anchorElNav, setAnchorElNav] = useState(null);
 
@@ -33,7 +35,7 @@ export const Header = ({ currentLanguage, setCurrentLanguage }) => {
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(
-            anchorElNav === null ? event.currentTarget : !anchorElNav
+            anchorElNav === null ? event.currentTarget : !anchorElNav,
         );
     };
     const handleCloseNavMenu = () => {
@@ -126,8 +128,36 @@ export const Header = ({ currentLanguage, setCurrentLanguage }) => {
                     </Link>
                 </div>
             </div>
-            <div onClick={handleLanguage} className="header__language">
-                {currentLanguage}
+            <div className="header__right">
+                <div className="header__right--login">
+                    {user !== undefined ? (
+                        <Link to="/Portfolio">
+                            {
+                                {
+                                    Eng: "Investor Area",
+                                    简体: "投资者专区",
+                                    繁體: "投資者專區",
+                                }[currentLanguage]
+                            }
+                        </Link>
+                    ) : (
+                        <Link to="/login">
+                            {
+                                {
+                                    Eng: "Investor Login",
+                                    简体: "投资者登录",
+                                    繁體: "投資者登錄",
+                                }[currentLanguage]
+                            }
+                        </Link>
+                    )}
+                </div>
+                <div
+                    onClick={handleLanguage}
+                    className="header__right--language"
+                >
+                    {currentLanguage}
+                </div>
             </div>
         </header>
     );

@@ -2,6 +2,27 @@
     display: flex;
     justify-content: space-between;
     padding: 10px 30px;
+    min-height: 46px;
+
+
+    a {
+        text-decoration: none;
+        color: white;
+        margin-left: 40px;
+    }
+
+    a:hover {
+        color: rgb(198, 198, 193);
+    }
+
+
+    .header-logo {
+        height: 50px;
+    }
+
+    .MuiSvgIcon-root {
+        color: white;
+    }
 
     &__left {
         display: flex;
@@ -12,36 +33,30 @@
             display: none;
         }
 
-        &--links {
-            a {
-                text-decoration: none;
-                color: white;
-                margin-left: 40px;
-            }
-
-            a:hover {
-                color: rgb(198, 198, 193);
-            }
-        }
-
-        .header-logo {
-            height: 50px;
-        }
-
-        .MuiSvgIcon-root {
-            color: white;
-        }
     }
 
-    &__language {
+    &__right {
         display: flex;
-        color: white;
-        font-size: 18px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        width: 55px;
+        flex-direction: row;
+
+        &--login {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        &--language {
+            color: white;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            width: 55px;
+        }
     }
 }
 
@@ -87,10 +102,6 @@
 
             &--links {
                 display: none;
-                // a {
-                //     margin-left: 20px;
-                // }
-
             }
         }
 
