@@ -99,11 +99,13 @@ const Contact = ({ currentLanguage }) => {
             phone,
         ].join("\n");
         const query = new URLSearchParams({
-            subject: selectedEnquiry.label[currentLanguage] || selectedEnquiry.label.Eng,
+            subject:
+                selectedEnquiry.label[currentLanguage] ||
+                selectedEnquiry.label.Eng,
             body,
         });
 
-        window.location.href = `mailto:?${query.toString()}`;
+        window.location.href = `mailto:account.dept@giga-hk.com?${query.toString()}`;
     };
 
     return (

@@ -32,7 +32,9 @@ export const Header = ({ currentLanguage, setCurrentLanguage }) => {
     const handleLanguage = () => {
         const languages = ["Eng", "简体", "繁體"];
         const nextLanguage =
-            languages[(languages.indexOf(currentLanguage) + 1) % languages.length];
+            languages[
+                (languages.indexOf(currentLanguage) + 1) % languages.length
+            ];
         setCurrentLanguage(nextLanguage);
     };
 
