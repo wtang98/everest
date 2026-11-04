@@ -1,22 +1,20 @@
 .holding-card {
-    display: grid;
-    grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr));
-    align-items: center;
+    display: flex;
     gap: 12px;
     min-width: 0;
-    padding: 8px 12px;
+    padding: 16px;
     border: 1px solid #e1e4e8;
     border-radius: 8px;
     background: #fff;
     box-shadow: 0 2px 8px rgb(16 43 69 / 5%);
 
-    &--transaction {
-        grid-template-columns: minmax(0, 1.35fr) repeat(4, minmax(0, 1fr));
-    }
-
     &__header,
     &__details {
         display: contents;
+    }
+
+    &__header {
+        width: 40%;
     }
 
     &__identity {
@@ -24,6 +22,7 @@
         align-items: baseline;
         gap: 8px;
         min-width: 0;
+        width: 35%;
 
         h2 {
             flex: 0 0 auto;
@@ -48,13 +47,13 @@
     &__details div {
         display: flex;
         align-items: baseline;
-        justify-content: space-between;
         gap: 6px;
         min-width: 0;
         white-space: nowrap;
     }
 
     &__value {
+        width: 25%;
 
         span,
         strong {
@@ -74,6 +73,7 @@
     }
 
     &__details {
+
         div {
             min-width: 0;
         }

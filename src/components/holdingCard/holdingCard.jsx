@@ -8,7 +8,7 @@ const HoldingCard = ({
     details,
     isTransaction = false,
 }) => (
-    <article
+    <div
         className={`holding-card${isTransaction ? " holding-card--transaction" : ""}`}
     >
         <div className="holding-card__header">
@@ -29,7 +29,7 @@ const HoldingCard = ({
                 </div>
             ))}
         </dl>
-    </article>
+    </div>
 );
 
 export default HoldingCard;

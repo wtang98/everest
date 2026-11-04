@@ -4,6 +4,8 @@ import { collection, doc, getDocs, getDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase.js";
 import { useMyContext } from "../../stateLayer/stateProvider.js";
 import HoldingCard from "../../components/holdingCard/holdingCard.jsx";
+import ChartCard from "../../components/chartCard/chartCard.jsx";
+import PerformanceCard from "../../components/performanceCard/performanceCard.jsx";
 import { calculatePerformanceMetrics } from "./portfolioUtils.js";
 import "./portfolio.scss";
 
@@ -165,13 +167,12 @@ const Portfolio = () => {
                             </p>
                         ) : (
                             <>
-                                <article className="chart-card chart-card--allocation">
-                                    <div className="chart-card__heading">
-                                        <div>
-                                            <h2>Portfolio allocation</h2>
-                                            <p>Market value by holding</p>
-                                        </div>
-                                        <div className="portfolio-total">
+                                <ChartCard
+                                    title="Portfolio allocation"
+                                    subtitle="Market value by holding"
+                                    className="chart-card--allocation"
+                                    headerAside={
+                                        <div className="chart-card__summary">
                                             <span>Total portfolio value</span>
                                             <strong>
                                                 {formatCurrency(
@@ -179,7 +180,8 @@ const Portfolio = () => {
                                                 )}
                                             </strong>
                                         </div>
-                                    </div>
+                                    }
+                                >
                                     <AgCharts
                                         className="chart-card__chart"
                                         options={{
@@ -228,63 +230,63 @@ const Portfolio = () => {
                                                 enabled: true,
                                             },
                                             legend: {
-                                                position: "bottom",
+                                                position: "right",
                                             },
                                         }}
                                     />
-                                </article>
-                                <article className="chart-card performance-card">
-                                    <h2>Performance metrics</h2>
-                                    <dl className="performance-card__metrics">
-                                        <div>
-                                            <dt>% increase</dt>
-                                            <dd>
-                                                {performanceReturn === undefined
+                                </ChartCard>
+                                <PerformanceCard
+                                    metrics={[
+                                        {
+                                            label: "% increase",
+                                            value:
+                                                performanceReturn === undefined
                                                     ? "N/A"
                                                     : formatPercent(
                                                           performanceReturn,
-                                                      )}
-                                            </dd>
-                                        </div>
-                                        <div>
-                                            <dt>% increase YoY</dt>
-                                            <dd>
-                                                {annualizedReturn === undefined
+                                                      ),
+                                        },
+                                        {
+                                            label: "% increase YoY",
+                                            value:
+                                                annualizedReturn === undefined
                                                     ? "N/A"
                                                     : formatPercent(
                                                           annualizedReturn,
-                                                      )}
-                                            </dd>
-                                        </div>
-                                        <div>
-                                            <dt>$ increase</dt>
-                                            <dd>
-                                                {performanceGain === undefined
+                                                      ),
+                                        },
+                                        {
+                                            label: "$ increase",
+                                            value:
+                                                performanceGain === undefined
                                                     ? "N/A"
                                                     : formatCurrency(
                                                           performanceGain,
-                                                      )}
-                                            </dd>
-                                        </div>
-                                    </dl>
-                                </article>
+                                                      ),
+                                        },
+                                    ]}
+                                />
                             </>
                         )}
                     </section>
                 </Suspense>
-                <div className="tabs">
-                    <div
+                <div className="tabs" role="group" aria-label="Portfolio views">
+                    <button
+                        type="button"
                         className={`tab ${openTab === "portfolio" ? "active" : ""}`}
                         onClick={() => handleTabClick("portfolio")}
+                        aria-pressed={openTab === "portfolio"}
                     >
                         Portfolio
-                    </div>
-                    <div
+                    </button>
+                    <button
+                        type="button"
                         className={`tab ${openTab === "transactions" ? "active" : ""}`}
                         onClick={() => handleTabClick("transactions")}
+                        aria-pressed={openTab === "transactions"}
                     >
                         Transactions
-                    </div>
+                    </button>
                 </div>
                 <div className="grid">
                     <div className="grid__cards">

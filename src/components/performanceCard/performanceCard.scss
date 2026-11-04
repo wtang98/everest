@@ -1,0 +1,53 @@
+.performance-card {
+    &__metrics {
+        display: grid;
+        grid-template-columns: minmax(0, 3fr) minmax(0, 3fr) minmax(0, 4fr);
+        gap: 16px;
+        margin: 28px 0;
+
+        div {
+            min-width: 0;
+        }
+
+        dt {
+            color: #637181;
+            font-size: 13px;
+        }
+
+        dd {
+            margin: 8px 0 0;
+            color: #102b45;
+            font-size: clamp(18px, 2vw, 26px);
+            font-weight: 600;
+            overflow-wrap: anywhere;
+        }
+    }
+
+    &__note {
+        margin-top: auto;
+        line-height: 1.5;
+    }
+}
+
+@media (max-width: 720px) {
+    .performance-card {
+        &__metrics {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 16px;
+            margin: 20px 0;
+
+            div {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                gap: 12px;
+            }
+
+            dd {
+                margin-top: 0;
+                font-size: 19px;
+                text-align: right;
+            }
+        }
+    }
+}
