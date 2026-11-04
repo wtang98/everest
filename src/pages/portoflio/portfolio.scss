@@ -21,8 +21,13 @@
             display: flex;
             border-bottom: 1px solid #e1e4e8;
             margin-bottom: 20px;
+            z-index: 0;
 
             .tab {
+                border: 0;
+                background: transparent;
+                font: inherit;
+                text-align: left;
                 padding: 10px 20px 10px 5px;
                 border-bottom: 2px solid transparent;
                 color: #637181;
@@ -58,97 +63,6 @@
                 border-radius: 8px;
                 color: #637181;
                 text-align: center;
-            }
-        }
-
-        .chart-card {
-            min-width: 0;
-            padding: 20px;
-            border: 1px solid #e1e4e8;
-            border-radius: 8px;
-            background: #fff;
-            box-shadow: 0 2px 8px rgb(16 43 69 / 5%);
-
-            h2 {
-                margin: 0;
-                color: #102b45;
-                font-size: 18px;
-                font-weight: 600;
-            }
-
-            p {
-                margin: 6px 0 12px;
-                color: #637181;
-                font-size: 13px;
-            }
-
-            &__chart {
-                display: block;
-                width: 100%;
-                height: 300px;
-            }
-
-            &--allocation {
-                .chart-card__chart {
-                    height: 220px;
-                }
-            }
-
-            &__heading {
-                display: flex;
-                align-items: flex-start;
-                justify-content: space-between;
-                gap: 16px;
-            }
-        }
-
-        .portfolio-total {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 4px;
-            text-align: right;
-
-            span {
-                color: #637181;
-                font-size: 12px;
-            }
-
-            strong {
-                color: #102b45;
-                font-size: 20px;
-                font-weight: 600;
-            }
-        }
-
-        .performance-card {
-            &__metrics {
-                display: grid;
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-                gap: 16px;
-                margin: 28px 0;
-
-                div {
-                    min-width: 0;
-                }
-
-                dt {
-                    color: #637181;
-                    font-size: 13px;
-                }
-
-                dd {
-                    margin: 8px 0 0;
-                    color: #102b45;
-                    font-size: clamp(18px, 2vw, 26px);
-                    font-weight: 600;
-                    overflow-wrap: anywhere;
-                }
-            }
-
-            &__note {
-                margin-top: auto;
-                line-height: 1.5;
             }
         }
 
@@ -191,55 +105,6 @@
 
             .charts {
                 grid-template-columns: minmax(0, 1fr);
-            }
-
-            .chart-card {
-                padding: 16px;
-
-                &__chart {
-                    height: 280px;
-                }
-
-                &--allocation {
-                    .chart-card__chart {
-                        height: 200px;
-                    }
-                }
-
-                &__heading {
-                    flex-wrap: wrap;
-                    gap: 8px;
-                }
-            }
-
-            .portfolio-total {
-                align-items: flex-start;
-                text-align: left;
-
-                strong {
-                    font-size: 18px;
-                }
-            }
-
-            .performance-card {
-                &__metrics {
-                    grid-template-columns: minmax(0, 1fr);
-                    gap: 16px;
-                    margin: 20px 0;
-
-                    div {
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: baseline;
-                        gap: 12px;
-                    }
-
-                    dd {
-                        margin-top: 0;
-                        font-size: 19px;
-                        text-align: right;
-                    }
-                }
             }
 
             .grid {
