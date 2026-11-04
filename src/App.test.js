@@ -1,9 +1,13 @@
-import { render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import App from "./App";
 import Contact from "./pages/contact/contact";
+import { auth } from "./firebase/firebase";
 
-test("renders the refreshed home page and primary navigation", () => {
-    render(<App />);
+test("renders the refreshed home page and primary navigation", async () => {
+    await act(async () => {
+        render(<App />);
+        await auth.authStateReady();
+    });
 
     expect(
         screen.getByRole("heading", {

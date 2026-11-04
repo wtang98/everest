@@ -1,33 +1,23 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase/firebase.js";
 
 const MyContext = createContext();
 
 export const MyProvider = ({ children }) => {
     const [user, setUser] = useState(undefined);
-
-    const updateUser = (newValue) => {
-        setUser(newValue);
-    };
+    const [authReady, setAuthReady] = useState(false);
 
     useEffect(() => {
-        const storedUser = localStorage.getItem("user");
-        if (storedUser) {
-            const currentTime = new Date().getTime();
-            const expiryTime = new Date(
-                JSON.parse(storedUser)?.stsTokenManager?.expirationTime,
-            ).getTime();
-            if (currentTime < expiryTime) {
-                setUser(JSON.parse(storedUser));
-            } else {
-                setUser(undefined);
-                localStorage.removeItem("user");
-            }
-        }
+        return onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+            setAuthReady(true);
+        });
     }, []);
 
     const value = {
         user,
-        updateUser,
+        authReady,
     };
 
     return <MyContext.Provider value={value}>{children}</MyContext.Provider>;

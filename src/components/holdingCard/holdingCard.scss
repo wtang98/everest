@@ -1,0 +1,159 @@
+.holding-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr));
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    padding: 8px 12px;
+    border: 1px solid #e1e4e8;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgb(16 43 69 / 5%);
+
+    &--transaction {
+        grid-template-columns: minmax(0, 1.35fr) repeat(4, minmax(0, 1fr));
+    }
+
+    &__header,
+    &__details {
+        display: contents;
+    }
+
+    &__identity {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        min-width: 0;
+
+        h2 {
+            flex: 0 0 auto;
+            margin: 0;
+            color: #102b45;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        p {
+            min-width: 0;
+            margin: 0;
+            overflow: hidden;
+            color: #637181;
+            font-size: 12px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+
+    &__value,
+    &__details div {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 6px;
+        min-width: 0;
+        white-space: nowrap;
+    }
+
+    &__value {
+        span,
+        strong {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        span {
+            color: #637181;
+            font-size: 11px;
+        }
+
+        strong {
+            color: #102b45;
+            font-size: 13px;
+        }
+    }
+
+    &__details {
+        div {
+            min-width: 0;
+        }
+
+        dt {
+            color: #637181;
+            font-size: 11px;
+        }
+
+        dd {
+            margin: 0;
+            color: #233446;
+            font-size: 12px;
+            font-weight: 500;
+        }
+    }
+}
+
+@media (max-width: 720px) {
+    .holding-card {
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+        gap: 10px;
+
+        &__header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        &__identity {
+            display: block;
+
+            h2 {
+                font-size: 16px;
+                overflow-wrap: anywhere;
+            }
+
+            p {
+                margin-top: 4px;
+                font-size: 13px;
+                overflow-wrap: anywhere;
+            }
+        }
+
+        &__value {
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+            text-align: right;
+
+            strong {
+                font-size: 16px;
+                overflow-wrap: anywhere;
+            }
+        }
+
+        &__details {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px 12px;
+            margin: 12px 0 0;
+            padding-top: 5px;
+            border-top: 1px solid #eef0f2;
+
+            div {
+                min-width: 0;
+                display: block;
+            }
+
+            dt {
+                font-size: 12px;
+            }
+
+            dd {
+                margin: 4px 0 0;
+                font-size: 13px;
+                overflow-wrap: anywhere;
+            }
+        }
+    }
+}
