@@ -1,15 +1,25 @@
-import { useEffect, useState } from "react";
-import { AgGridReact } from "ag-grid-react";
+import { lazy, Suspense, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { collection, doc, getDocs, getDoc } from "firebase/firestore";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth, db } from "../../firebase/firebase.js";
+import { db } from "../../firebase/firebase.js";
 import { useMyContext } from "../../stateLayer/stateProvider.js";
+import HoldingCard from "../../components/holdingCard/holdingCard.jsx";
+import { calculatePerformanceMetrics } from "./portfolioUtils.js";
 import "./portfolio.scss";
+
+const AgCharts = lazy(async () => {
+    const [{ AgCharts }, { AllCommunityModule, ModuleRegistry }] =
+        await Promise.all([
+            import("ag-charts-react"),
+            import("ag-charts-community"),
+        ]);
+    ModuleRegistry.registerModules([AllCommunityModule]);
+    return { default: AgCharts };
+});
 
 const Portfolio = () => {
     const navigate = useNavigate();
-    const { user, updateUser } = useMyContext();
+    const { user, authReady } = useMyContext();
     const [portfolioData, setPortfolioData] = useState(undefined);
     const [transactionData, setTransactionData] = useState(undefined);
     const [openTab, setOpenTab] = useState("portfolio");
@@ -24,17 +34,7 @@ const Portfolio = () => {
     //     },
     // ];
 
-    useEffect(() => {
-        // Listen for authentication state changes
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            updateUser("");
-        });
-
-        // Clean up subscription on unmount
-        return () => unsubscribe();
-    }, [updateUser]);
-
-    const fetchPortfolioData = async () => {
+    const fetchPortfolioData = useCallback(async () => {
         const userRef = doc(db, "users", user.uid);
 
         try {
@@ -68,9 +68,9 @@ const Portfolio = () => {
         } catch (error) {
             console.error("Error fetching documents: ", error);
         }
-    };
+    }, [user]);
 
-    const fetchTransactionData = async () => {
+    const fetchTransactionData = useCallback(async () => {
         try {
             const transactionRef = collection(
                 db,
@@ -80,24 +80,25 @@ const Portfolio = () => {
             );
             const querySnapshot = await getDocs(transactionRef);
             const items = querySnapshot.docs.map((doc) => ({
-                marketValue: doc.data().unitPrice * doc.data().quantity,
                 ...doc.data(),
+                marketValue: doc.data().unitPrice * doc.data().quantity,
             }));
             setTransactionData(items);
         } catch (error) {
             console.error("Error fetching documents: ", error);
         }
-    };
+    }, [user]);
 
     useEffect(() => {
-        const storedUser = localStorage.getItem("user");
-        if (user === undefined && storedUser === null) {
+        if (!authReady) return;
+
+        if (!user) {
             navigate("/login");
-        } else if (user !== undefined && storedUser !== null) {
+        } else {
             fetchPortfolioData();
             fetchTransactionData();
-        } // eslint-disable-next-line
-    }, [user]);
+        }
+    }, [user, authReady, fetchPortfolioData, fetchTransactionData, navigate]);
 
     const currencyValueFormatter = (params) => {
         return new Intl.NumberFormat("en-US", {
@@ -105,6 +106,38 @@ const Portfolio = () => {
             currency: "USD",
         }).format(params.value);
     };
+
+    const portfolioChartData = (portfolioData ?? []).filter(
+        (item) => Number.isFinite(item.marketValue) && item.marketValue > 0,
+    );
+
+    const totalPortfolioValue = portfolioChartData.reduce(
+        (total, item) => total + item.marketValue,
+        0,
+    );
+
+    const {
+        gain: performanceGain,
+        returnRate: performanceReturn,
+        annualizedReturn,
+    } = calculatePerformanceMetrics(totalPortfolioValue, transactionData);
+
+    const portfolioShareFormatter = new Intl.NumberFormat("en-US", {
+        style: "percent",
+        maximumFractionDigits: 2,
+    });
+
+    const formatCurrency = (value) =>
+        new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+        }).format(value);
+
+    const formatPercent = (value) =>
+        new Intl.NumberFormat("en-US", {
+            style: "percent",
+            maximumFractionDigits: 2,
+        }).format(value);
 
     const handleTabClick = (tabName) => {
         setOpenTab(tabName);
@@ -116,6 +149,129 @@ const Portfolio = () => {
                 <div className="landing">
                     {userName && `Welcome ${userName}`}
                 </div>
+                <Suspense
+                    fallback={
+                        <p className="charts__empty">Loading charts...</p>
+                    }
+                >
+                    <section className="charts" aria-label="Portfolio summary">
+                        {portfolioData === undefined ? (
+                            <p className="charts__empty">
+                                Loading portfolio data...
+                            </p>
+                        ) : portfolioChartData?.length === 0 ? (
+                            <p className="charts__empty">
+                                No portfolio holdings to chart.
+                            </p>
+                        ) : (
+                            <>
+                                <article className="chart-card chart-card--allocation">
+                                    <div className="chart-card__heading">
+                                        <div>
+                                            <h2>Portfolio allocation</h2>
+                                            <p>Market value by holding</p>
+                                        </div>
+                                        <div className="portfolio-total">
+                                            <span>Total portfolio value</span>
+                                            <strong>
+                                                {formatCurrency(
+                                                    totalPortfolioValue,
+                                                )}
+                                            </strong>
+                                        </div>
+                                    </div>
+                                    <AgCharts
+                                        className="chart-card__chart"
+                                        options={{
+                                            data: portfolioChartData,
+                                            series: [
+                                                {
+                                                    type: "donut",
+                                                    angleKey: "marketValue",
+                                                    calloutLabelKey:
+                                                        "stockCode",
+                                                    innerRadiusRatio: 0.62,
+                                                    fills: [
+                                                        "#102b45",
+                                                        "#c9a56c",
+                                                        "#637181",
+                                                        "#93a5b5",
+                                                        "#d8c6a5",
+                                                    ],
+                                                    tooltip: {
+                                                        renderer: ({
+                                                            datum,
+                                                        }) => ({
+                                                            title: datum.stockCode,
+                                                            data: [
+                                                                {
+                                                                    label: "Market value",
+                                                                    value: currencyValueFormatter(
+                                                                        {
+                                                                            value: datum.marketValue,
+                                                                        },
+                                                                    ),
+                                                                },
+                                                                {
+                                                                    label: "Share of portfolio",
+                                                                    value: portfolioShareFormatter.format(
+                                                                        datum.marketValue /
+                                                                            totalPortfolioValue,
+                                                                    ),
+                                                                },
+                                                            ],
+                                                        }),
+                                                    },
+                                                },
+                                            ],
+                                            tooltip: {
+                                                enabled: true,
+                                            },
+                                            legend: {
+                                                position: "bottom",
+                                            },
+                                        }}
+                                    />
+                                </article>
+                                <article className="chart-card performance-card">
+                                    <h2>Performance metrics</h2>
+                                    <dl className="performance-card__metrics">
+                                        <div>
+                                            <dt>% increase</dt>
+                                            <dd>
+                                                {performanceReturn === undefined
+                                                    ? "N/A"
+                                                    : formatPercent(
+                                                          performanceReturn,
+                                                      )}
+                                            </dd>
+                                        </div>
+                                        <div>
+                                            <dt>% increase YoY</dt>
+                                            <dd>
+                                                {annualizedReturn === undefined
+                                                    ? "N/A"
+                                                    : formatPercent(
+                                                          annualizedReturn,
+                                                      )}
+                                            </dd>
+                                        </div>
+                                        <div>
+                                            <dt>$ increase</dt>
+                                            <dd>
+                                                {performanceGain === undefined
+                                                    ? "N/A"
+                                                    : formatCurrency(
+                                                          performanceGain,
+                                                      )}
+                                            </dd>
+                                        </div>
+                                    </dl>
+                                </article>
+                            </>
+                        )}
+                    </section>
+                </Suspense>
                 <div className="tabs">
                     <div
                         className={`tab ${openTab === "portfolio" ? "active" : ""}`}
@@ -130,88 +286,84 @@ const Portfolio = () => {
                         Transactions
                     </div>
                 </div>
-                {/* <div className="performance">
-                <div className="performance-item">
-                    <div className="performance-label">
-                        Total Portfolio Value
-                    </div>
-                    <div className="performance-value"> </div>
-                </div>
-                <div className="performance-item">
-                    <div className="performance-label">Gain/Loss </div>
-                    <div className="performance-value"> </div>
-                </div>
-                <div className="performance-item">
-                    <div className="performance-label">Total Return</div>
-                    <div className="performance-value"> </div>
-                </div>
-            </div> */}
                 <div className="grid">
-                    {openTab === "portfolio" ? (
-                        <AgGridReact
-                            defaultColDef={{
-                                resizable: false,
-                                suppressMovable: true,
-                                sortable: false,
-                            }}
-                            tooltipShowMode={"whenTruncated"}
-                            tooltipShowDelay={100}
-                            rowData={portfolioData}
-                            columnDefs={[
-                                { field: "stockCode", width: 106 },
-                                {
-                                    field: "stockName",
-                                    flex: 1,
-                                    cellStyle: () => ({ fontSize: "9px" }),
-                                },
-                                { field: "unitPrice", width: 97 },
-                                { field: "quantity", width: 90 },
-                                {
-                                    field: "marketValue",
-                                    width: 130,
-                                    valueFormatter: currencyValueFormatter,
-                                },
-                            ]}
-                        />
-                    ) : (
-                        <AgGridReact
-                            defaultColDef={{
-                                resizable: false,
-                                suppressMovable: true,
-                                sortable: false,
-                            }}
-                            tooltipShowMode={"whenTruncated"}
-                            tooltipShowDelay={100}
-                            rowData={transactionData}
-                            columnDefs={[
-                                {
-                                    field: "date",
-                                    width: 106,
-                                    cellEditor: "agDateCellEditor",
-                                    valueFormatter: (params) =>
-                                        params.value
-                                            ? String(params.value).replace(
-                                                  /(\d{4})(\d{2})(\d{2})/,
-                                                  "$1-$2-$3",
-                                              )
-                                            : "",
-                                },
-                                { field: "stockCode", width: 106 },
-                                {
-                                    field: "stockName",
-                                    flex: 1,
-                                    cellStyle: () => ({ fontSize: "9px" }),
-                                },
-                                { field: "unitPrice", width: 100 },
-                                { field: "quantity", width: 90 },
-                                {
-                                    field: "marketValue",
-                                    width: 106,
-                                    valueFormatter: currencyValueFormatter,
-                                },
-                            ]}
-                        />
-                    )}
+                    <div className="grid__cards">
+                        {openTab === "portfolio" ? (
+                            portfolioData === undefined ? (
+                                <p className="grid__empty">
+                                    Loading portfolio...
+                                </p>
+                            ) : portfolioData.length === 0 ? (
+                                <p className="grid__empty">
+                                    No portfolio holdings yet.
+                                </p>
+                            ) : (
+                                portfolioData.map((item, index) => (
+                                    <HoldingCard
+                                        key={`${item.stockCode}-${index}`}
+                                        stockCode={item.stockCode}
+                                        stockName={item.stockName}
+                                        valueLabel="Market value"
+                                        value={currencyValueFormatter({
+                                            value: item.marketValue,
+                                        })}
+                                        details={[
+                                            {
+                                                label: "Unit price",
+                                                value: currencyValueFormatter({
+                                                    value: item.unitPrice,
+                                                }),
+                                            },
+                                            {
+                                                label: "Quantity",
+                                                value: item.quantity,
+                                            },
+                                        ]}
+                                    />
+                                ))
+                            )
+                        ) : transactionData === undefined ? (
+                            <p className="grid__empty">
+                                Loading transactions...
+                            </p>
+                        ) : transactionData.length === 0 ? (
+                            <p className="grid__empty">No transactions yet.</p>
+                        ) : (
+                            transactionData.map((item, index) => (
+                                <HoldingCard
+                                    key={`${item.date}-${item.stockCode}-${index}`}
+                                    isTransaction
+                                    stockCode={item.stockCode}
+                                    stockName={item.stockName}
+                                    valueLabel="Transaction value"
+                                    value={currencyValueFormatter({
+                                        value: item.marketValue,
+                                    })}
+                                    details={[
+                                        {
+                                            label: "Date",
+                                            value: item.date
+                                                ? String(item.date).replace(
+                                                      /(\d{4})(\d{2})(\d{2})/,
+                                                      "$1-$2-$3",
+                                                  )
+                                                : "—",
+                                        },
+                                        {
+                                            label: "Unit price",
+                                            value: currencyValueFormatter({
+                                                value: item.unitPrice,
+                                            }),
+                                        },
+                                        {
+                                            label: "Quantity",
+                                            value: item.quantity,
+                                        },
+                                    ]}
+                                />
+                            ))
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

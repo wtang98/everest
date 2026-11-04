@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase/firebase.js";
 import "./header.scss";
 import { useMyContext } from "../../stateLayer/stateProvider.js";
 
@@ -27,7 +29,10 @@ const languageNames = { Eng: "English", 简体: "简体中文", 繁體: "繁體�
 
 export const Header = ({ currentLanguage, setCurrentLanguage }) => {
     const { user } = useMyContext();
+    const navigate = useNavigate();
     const [menuOpen, setMenuOpen] = useState(false);
+    const [logoutError, setLogoutError] = useState("");
+    const [isLoggingOut, setIsLoggingOut] = useState(false);
 
     const handleLanguage = () => {
         const languages = ["Eng", "简体", "繁體"];
@@ -40,18 +45,29 @@ export const Header = ({ currentLanguage, setCurrentLanguage }) => {
 
     const closeMenu = () => setMenuOpen(false);
 
+    const handleLogout = async () => {
+        setLogoutError("");
+        setIsLoggingOut(true);
+
+        try {
+            await signOut(auth);
+            closeMenu();
+            navigate("/");
+        } catch {
+            setLogoutError("Unable to log out. Please try again.");
+        } finally {
+            setIsLoggingOut(false);
+        }
+    };
+
     return (
         <header className="header">
             <Link className="header__brand" to="/" onClick={closeMenu}>
-                <span className="header__brand-mark" aria-hidden="true">
-                    E
-                </span>
                 <span className="header__brand-name">
-                    <strong>EVEREST</strong>
+                    <strong>Giga & Everest</strong>
                     <span>HONG KONG</span>
                 </span>
             </Link>
-
             <button
                 className="header__menu-toggle"
                 type="button"
@@ -64,7 +80,6 @@ export const Header = ({ currentLanguage, setCurrentLanguage }) => {
                 <span />
                 <span />
             </button>
-
             <nav
                 className={`header__navigation${menuOpen ? " is-open" : ""}`}
                 id="primary-navigation"
@@ -81,13 +96,12 @@ export const Header = ({ currentLanguage, setCurrentLanguage }) => {
                     </Link>
                 ))}
             </nav>
-
             <div className="header__actions">
                 <Link
                     className="header__investor-link"
-                    to={user !== undefined ? "/portfolio" : "/login"}
+                    to={user ? "/portfolio" : "/login"}
                 >
-                    {user !== undefined
+                    {user
                         ? {
                               Eng: "Investor area",
                               简体: "投资者专区",
@@ -99,6 +113,26 @@ export const Header = ({ currentLanguage, setCurrentLanguage }) => {
                               繁體: "投資者登錄",
                           }[currentLanguage]}
                 </Link>
+                {user && (
+                    <button
+                        className="header__logout"
+                        type="button"
+                        onClick={handleLogout}
+                        disabled={isLoggingOut}
+                    >
+                        {isLoggingOut
+                            ? {
+                                  Eng: "Logging out...",
+                                  简体: "正在退出...",
+                                  繁體: "正在登出...",
+                              }[currentLanguage]
+                            : {
+                                  Eng: "Log out",
+                                  简体: "退出登录",
+                                  繁體: "登出",
+                              }[currentLanguage]}
+                    </button>
+                )}
                 <button
                     className="header__language"
                     type="button"
@@ -107,6 +141,11 @@ export const Header = ({ currentLanguage, setCurrentLanguage }) => {
                 >
                     {currentLanguage}
                 </button>
+                {logoutError && (
+                    <span className="header__logout-error" role="alert">
+                        {logoutError}
+                    </span>
+                )}
             </div>
         </header>
     );

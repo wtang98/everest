@@ -4,10 +4,8 @@ import { useNavigate } from "react-router";
 import "./login.scss";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
-import { useMyContext } from "../../stateLayer/stateProvider.js";
 
 const Login = () => {
-    const { updateUser } = useMyContext();
     const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
@@ -21,15 +19,11 @@ const Login = () => {
         setIsSubmitting(true);
 
         try {
-            const userCredential = await signInWithEmailAndPassword(
+            await signInWithEmailAndPassword(
                 auth,
                 email,
                 password,
             );
-            const userCred = userCredential.user;
-            updateUser(userCred);
-            localStorage.setItem("email", email);
-            localStorage.setItem("user", JSON.stringify(userCred));
             navigate("/portfolio");
         } catch {
             setErrorMessage(
