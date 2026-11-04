@@ -55,6 +55,7 @@
     }
 
     &__value {
+
         span,
         strong {
             overflow: hidden;
@@ -93,30 +94,32 @@
 
 @media (max-width: 720px) {
     .holding-card {
-        display: flex;
-        flex-direction: column;
-        padding: 16px;
-        gap: 10px;
+        display: block;
+        padding: 14px;
 
         &__header {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, auto);
+            align-items: start;
             gap: 12px;
         }
 
         &__identity {
             display: block;
+            min-width: 0;
 
             h2 {
-                font-size: 16px;
-                overflow-wrap: anywhere;
+                font-size: 15px;
             }
 
             p {
                 margin-top: 4px;
                 font-size: 13px;
+                line-height: 1.4;
+                overflow: visible;
                 overflow-wrap: anywhere;
+                text-overflow: clip;
+                white-space: normal;
             }
         }
 
@@ -124,20 +127,26 @@
             flex-direction: column;
             align-items: flex-end;
             gap: 4px;
+            white-space: normal;
             text-align: right;
+
+            span,
+            strong {
+                max-width: 100%;
+                overflow-wrap: anywhere;
+            }
 
             strong {
                 font-size: 16px;
-                overflow-wrap: anywhere;
             }
         }
 
         &__details {
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 10px 12px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
             margin: 12px 0 0;
-            padding-top: 5px;
+            padding-top: 12px;
             border-top: 1px solid #eef0f2;
 
             div {
@@ -147,6 +156,7 @@
 
             dt {
                 font-size: 12px;
+                overflow-wrap: anywhere;
             }
 
             dd {
