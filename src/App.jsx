@@ -33,7 +33,7 @@ const App = () => {
     return (
         <div className="App">
             <MyProvider>
-                <BrowserRouter>
+                <BrowserRouter basename={process.env.PUBLIC_URL}>
                     <div className="App__header">
                         <Header
                             currentLanguage={currentLanguage}
